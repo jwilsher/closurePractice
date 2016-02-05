@@ -11,9 +11,13 @@ var outer = function(){
 
   //Code Here
 
+var inner = outer();
+
 //Once you do that, invoke inner.
 
   //Code Here
+
+inner();
 
 
 
@@ -30,9 +34,15 @@ var callFriend = function(){
 };
 
 //Above you're given a callFriend function that returns another function.
-//Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
+//Do what you need to do in order to call your function and get 
+//'Calling Jake at 435-215-9248' in your console.
 
   //Code Here
+
+var phoneCall = callFriend();
+phoneCall('435-215-9248');
+
+
 
 
 
@@ -45,6 +55,17 @@ var callFriend = function(){
 */
 
   //Code Here
+//My Answer....
+
+function makeCounter() {
+  var tracker = 0;
+  return function() {
+    tracker++;
+    return tracker;
+  }
+}
+//end of my answer
+
   var count = makeCounter();
   count() // 1
   count() // 2
@@ -58,11 +79,80 @@ var callFriend = function(){
 
 
 /*
-  Write a function that accepts another function as it's first argument and returns a new function
-  (which invokes the original function that was passed in) that can only ever be executed once.
-  Once completed, add a second argument that allows the function to be invoked N number of times.
+  Write a function that accepts another function as it's first argument and 
+  returns a new function
+  (which invokes the original function that was passed in) that can only ever 
+  be executed once.
+  Once completed, add a second argument that allows the function to be invoked 
+  N number of times.
   After the function has been called N number of times, console.log('STAHHP');
 */
+
+
+//To execute once....
+
+function myFunction(cb) {
+  var flag = true;
+  return function() {
+    if (flag === true) {
+      flag = false;
+      return cb();
+    }
+  }
+}
+
+
+function myName() {
+  return 'Jaclyn';
+}
+
+var inner = myFunction(myName);
+inner();
+
+//To execute 'N' number of times.....
+
+
+
+function myFunction(cb, N) {
+  var counter = 0;
+  return function() {
+    if (counter < N) {
+      counter = counter + 1;
+      return cb();
+    }
+    return console.log('STAHHP');
+  }
+}
+
+
+function myName() {
+  return 'Jaclyn';
+}
+
+var inner = myFunction(myName, 3);
+inner();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
